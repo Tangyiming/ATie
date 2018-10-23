@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.Pane?>
+<?import application.TableCheckedValueFactory?>
+<!-- <?import application.TableCheckedValueFactory?> -->
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+	<children>
+
+		<ComboBox id="chooseComm" fx:id="Ports" accessibleText="choose comm" layoutX="109.0" layoutY="515.0" onMouseClicked="#chooseComm" prefHeight="23.0" prefWidth="120.0" promptText="Choose port" />
+		<Button fx:id="openCoomButton" layoutX="60.0" layoutY="649.0" mnemonicParsing="false" onAction="#openCoom" text="Open" />
+
+		<Button fx:id="closeCoomButton" disable="true" layoutX="139.0" layoutY="649.0" mnemonicParsing="false" onAction="#closeCoom" text="Close" />
+		<Label layoutX="40.0" layoutY="542.0" text="波特率(B)" />
+		<Label layoutX="41.0" layoutY="569.0" text="数据位(D)" />
+		<Label layoutX="40.0" layoutY="592.0" text="奇偶校验(P)" />
+		<Label layoutX="40.0" layoutY="617.0" text="停止位(S)" />
+
+		<ComboBox fx:id="BaudRateComboBox" editable="false" layoutX="109.0" layoutY="540.0" prefHeight="23.0" prefWidth="120.0">
+			<items>
+				<FXCollections fx:factory="observableArrayList">
+					<String fx:value="75" />
+					<String fx:value="110" />
+					<String fx:value="134" />
+					<String fx:value="150" />
+					<String fx:value="300" />
+					<String fx:value="600" />
+					<String fx:value="1200" />
+					<String fx:value="1800" />
+					<String fx:value="2400" />
+					<String fx:value="4800" />
+					<String fx:value="7200" />
+					<String fx:value="9600" />
+					<String fx:value="14400" />
+					<String fx:value="19200" />
+					<String fx:value="38400" />
+					<String fx:value="57600" />
+					<String fx:value="115200" />
+					<String fx:value="128000" />
+				</FXCollections>
+			</items>
+			<value>
+				<String fx:value="14400" />
+			</value>
+		</ComboBox>
+		<ComboBox fx:id="DataBitsComboBox" editable="false" layoutX="109.0" layoutY="565.0" prefHeight="23.0" prefWidth="120.0">
+			<items>
+				<FXCollections fx:factory="observableArrayList">
+					<String fx:value="5" />
+					<String fx:value="6" />
+					<String fx:value="7" />
+					<String fx:value="8" />
+				</FXCollections>
+			</items>
+			<value>
+				<String fx:value="8" />
+			</value>
+		</ComboBox>
+		<ComboBox fx:id="ParityComboBox" editable="false" layoutX="109.0" layoutY="590.0" prefHeight="23.0" prefWidth="120.0">
+			<items>
+				<FXCollections fx:factory="observableArrayList">
+					<String fx:value="无" />
+					<String fx:value="奇" />
+					<String fx:value="偶" />
+					<String fx:value="标志" />
+					<String fx:value="空格" />
+				</FXCollections>
+			</items>
+			<value>
+				<String fx:value="无" />
+			</value>
+		</ComboBox>
+		<ComboBox fx:id="StopBitsComboBox" editable="false" layoutX="109.0" layoutY="615.0" prefHeight="23.0" prefWidth="120.0">
+			<items>
+				<FXCollections fx:factory="observableArrayList">
+					<String fx:value="1" />
+					<String fx:value="1.5" />
+					<String fx:value="2" />
+				</FXCollections>
+			</items>
+			<value>
+				<String fx:value="1" />
+			</value>
+		</ComboBox>
+
+		<Label fx:id="openStatus" layoutY="699.0" prefHeight="23.0" prefWidth="426.0" textFill="#a49c9c" />
+		<Label layoutX="40.0" layoutY="517.0" text="串口(Port)" />
+		<Accordion layoutX="342.0" layoutY="430.0" />
+		<Accordion layoutX="314.0" layoutY="371.0" />
+		<TextArea fx:id="ATResponse" editable="false" layoutX="254.0" layoutY="515.0" prefHeight="123.0" prefWidth="602.0" promptText="Response Area" />
+		<TextField fx:id="AT" layoutX="254.0" layoutY="648.0" prefHeight="23.0" prefWidth="602.0" promptText="AT Command" />
+		<Button fx:id="sendATButton" layoutX="866.0" layoutY="649.0" mnemonicParsing="false" onAction="#sendAT" prefHeight="23.0" prefWidth="47.0" text="发送" />
+
+		<TableView fx:id="CasesTable" layoutX="30.0" layoutY="41.0" prefHeight="461.0" prefWidth="881.0">
+
+			<columns>
+				<TableColumn fx:id="tableCheckCoxList" prefWidth="43.0" resizable="false" sortable="false">
+					<cellValueFactory>
+						<TableCheckedValueFactory />
+						<!-- <TableCheckedValueFactory /> -->
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn fx:id="tableID" prefWidth="33.0" text="ID" />
+				<TableColumn fx:id="caseName" prefWidth="82.0" text="用例名" />
+				<TableColumn fx:id="tableATCMD" prefWidth="152.0" text="AT指令" />
+				<TableColumn fx:id="tableExpection" prefWidth="172.0" text="预期" />
+				<TableColumn fx:id="tableResponse" prefWidth="322.0" text="返回" />
+				<TableColumn fx:id="tableResult" minWidth="0.0" prefWidth="76.0" text="测试结果" /> 
+			</columns>
+			<effect>
+				<Blend />
+			</effect>
+		</TableView>
+		<Button fx:id="importCasesButton" layoutX="30.0" layoutY="11.0" mnemonicParsing="false" onAction="#importCases" text="导入cases" />
+		<Button fx:id="GenerateReportButton" layoutX="816.0" layoutY="11.0" mnemonicParsing="false" onAction="#GenerateReport" text="生成报告" />
+		<Button fx:id="OpenHelpButton" layoutX="889.0" layoutY="11.0" mnemonicParsing="false" onAction="#openhelpfile" text="?" />
+		<Button fx:id="testAllButton" layoutX="109.0" layoutY="11.0" mnemonicParsing="false" onAction="#testAll" text="执行全部" />
+		<Button fx:id="runSelectButton" layoutX="181.0" layoutY="11.0" mnemonicParsing="false" onAction="#runSelect" text="执行勾选" />
+		<Label fx:id="openTestCases" layoutX="493.0" layoutY="699.0" prefHeight="23.0" prefWidth="436.0" text="使用中的测试用例" textFill="#a49c9c" />
+		<Button fx:id="ClearTextAreaButton" layoutX="869.0" layoutY="515.0" mnemonicParsing="false" onAction="#ClearTextArea" text="清空" />
+		<Button fx:id="ExportLogButton" layoutX="869.0" layoutY="546.0" mnemonicParsing="false" onAction="#ExportLog" text="导出" />
+      <Button fx:id="pauseBtton" disable="true" layoutX="254.0" layoutY="11.0" mnemonicParsing="false" onAction="#pause" text="暂停" />
+      <Button fx:id="stopButton" disable="true" layoutX="302.0" layoutY="11.0" mnemonicParsing="false" onAction="#stop" text="停止" />
+      <ComboBox fx:id="timout" layoutX="730.0" layoutY="11.0" prefHeight="23.0" prefWidth="70.0" >
+      <items>
+				<FXCollections fx:factory="observableArrayList">
+					<String fx:value="0" />
+					<String fx:value="10" />
+					<String fx:value="30" />
+					<String fx:value="50" />
+					<String fx:value="100" />
+					<String fx:value="200" />
+					<String fx:value="500" />
+				</FXCollections>
+			</items>
+			<value>
+				<String fx:value="30" />
+			</value>
+		</ComboBox>
+      <Label layoutX="674.0" layoutY="15.0" text="间隔(ms)" />
+
+	</children>
+	<opaqueInsets>
+		<Insets />
+	</opaqueInsets>
+</Pane>

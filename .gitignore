@@ -1,0 +1,9 @@
+build
+bin
+build.fxbuild
+.settings
+.project
+.classpath
+.xls
+.xlsx
+.xlsx.fxbuild
