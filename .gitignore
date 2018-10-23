@@ -4,6 +4,6 @@ build.fxbuild
 .settings
 .project
 .classpath
-.xls
-.xlsx
-.xlsx.fxbuild
+*.xls
+*.xlsx
+*.xlsx.fxbuild
