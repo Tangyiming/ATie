@@ -19,22 +19,20 @@
 
 ## 添加以下jar包：
 
-```
-RXTXcomm.jar 关于RXTXcomm的使用[参考教程](http://blog.csdn.net/cheng157507947/article/details/43764623)
+RXTXcomm.jar 关于RXTXcomm的使用 [参考教程](http://blog.csdn.net/cheng157507947/article/details/43764623)
 commons-codec-1.10.jar
 poi-scratchpad-3.15.jar
 poi-excelant-3.15.jar
 log4j-1.2.17.jar
 poi-3.15.jar
 commons-logging-1.2.jar
-xmlbeans-2.6.0.jar
+xmlbeans-2.6.0.jars
 poi-ooxml-schemas-3.15.jar
 poi-ooxml-3.15.jar
 commons-collections4-4.1.jar
 junit-4.12.jar
 curvesapi-1.04.jar
 poi-examples-3.15.jar
-```
 
 
 
